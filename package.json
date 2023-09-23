@@ -1,16 +1,16 @@
 {
-  "name": "fast.com",
-  "version": "1.0.6",
-  "description": "A fast.com cli",
+  "name": "@ethglobal/speed",
+  "version": "0.1.0",
+  "description": "Quick speedtest for debugging",
   "bin": "./index.js",
   "type": "module",
   "main": "index.js",
   "keywords": [
-    "fast",
+    "ethglobal",
     "speedtest"
   ],
   "author": "ETHGlobal",
-  "repository": "seanghay/netflix-fast-cli",
+  "repository": "ethglobal/speedtest",
   "license": "Apache-2.0",
   "dependencies": {
     "acorn": "^8.8.0",
