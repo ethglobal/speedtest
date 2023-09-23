@@ -1,0 +1,24 @@
+{
+  "name": "fast.com",
+  "version": "1.0.6",
+  "description": "A fast.com cli",
+  "bin": "./index.js",
+  "type": "module",
+  "main": "index.js",
+  "keywords": [
+    "fast",
+    "speedtest"
+  ],
+  "author": "Seanghay Yath",
+  "repository": "seanghay/netflix-fast-cli",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "acorn": "^8.8.0",
+    "acorn-walk": "^8.2.0",
+    "axios": "^1.1.2",
+    "chalk": "^5.1.0",
+    "cheerio": "^1.0.0-rc.12",
+    "console-clear": "^1.1.1",
+    "ms": "^2.1.3"
+  }
+}
