@@ -8,7 +8,36 @@ import ms from 'ms'
 import chalk from 'chalk'
 import clear from 'console-clear';
 import { address, mac, dns } from 'address/promises';
+import si from 'systeminformation';
 
+
+async function systemStats() {
+  const cpu = await si.cpu();
+  const os = await si.osInfo();
+  const wifi = await si.wifiConnections()
+  const gateway = await si.networkGatewayDefault()
+
+  let system = {
+    manufacturer: cpu.manufacturer,
+    brand: cpu.brand,
+    vendor: cpu.vendor,
+    model: cpu.model,
+    speed: cpu.speed,
+    platform: os.platform,
+    distro: os.distro,
+    release: os.release,
+    osName: os.codename,
+    hostname: os.hostname,
+    arch: os.arch,
+  }
+  let response = {
+    device: system,
+    wifi: wifi,
+    gateway,
+  }
+
+  return response
+}
 
 async function parseToken(scriptPath) {
   const { data: script } = await axios.get(scriptPath, { responseType: 'text' });
@@ -119,6 +148,7 @@ await Promise.all(
         const _addr = await address();
         const _mac = await mac();
         const _dns = await dns();
+        const stats = await systemStats();
         payload["summary"] = {
           speed: Math.round(averageBits / 1000)/1000,
           isp: _client.isp,
@@ -129,6 +159,7 @@ await Promise.all(
           city: _client.location.city,
           country: _client.location.country,
           publicIP: _client.ip,
+          ...stats,
           ipv6: _addr.ipv6,
           bits: averageBits,
           asn: _client.asn,
