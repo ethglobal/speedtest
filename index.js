@@ -146,7 +146,7 @@ await Promise.all(
         console.log(chalk.green.bold(' Your internet speed is ' + Math.round(averageBits / 10000)/100 + " Mbps on " + (new Date()).toUTCString() + ' '));
         console.log('')
 
-        const postUpdate = await fetch('http://localhost:3000/api/create', {
+        const postUpdate = await fetch('https://speed.ethglobal.com/api/create', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(payload)

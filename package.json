@@ -1,6 +1,6 @@
 {
   "name": "@ethglobal/speed",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Quick speedtest for debugging",
   "bin": "./index.js",
   "type": "module",
