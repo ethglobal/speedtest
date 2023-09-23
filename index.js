@@ -101,7 +101,8 @@ await Promise.all(
           lastReport = {
             averageBits,
             latency,
-            timeElapsed
+            timeElapsed,
+            ts: Math.round((new Date()).getTime()/1000),
           }
 
           if (Math.random() > 0.9) {
@@ -120,12 +121,17 @@ await Promise.all(
         const _dns = await dns();
         payload["summary"] = {
           speed: Math.round(averageBits / 1000)/1000,
+          isp: _client.isp,
           latency,
           ip: _addr.ip,
           mac: _mac,
           duration: timeElapsed,
+          city: _client.location.city,
+          country: _client.location.country,
+          publicIP: _client.ip,
           ipv6: _addr.ipv6,
           bits: averageBits,
+          asn: _client.asn,
           dns: _dns,
           time: (new Date()).toISOString(),
           timestamp: Math.round((new Date()).getTime()/1000),
