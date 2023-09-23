@@ -9,12 +9,13 @@
     "fast",
     "speedtest"
   ],
-  "author": "Seanghay Yath",
+  "author": "ETHGlobal",
   "repository": "seanghay/netflix-fast-cli",
   "license": "Apache-2.0",
   "dependencies": {
     "acorn": "^8.8.0",
     "acorn-walk": "^8.2.0",
+    "address": "^2.0.1",
     "axios": "^1.1.2",
     "chalk": "^5.1.0",
     "cheerio": "^1.0.0-rc.12",
