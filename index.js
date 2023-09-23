@@ -63,10 +63,9 @@ const responseTimeSamples = [];
 const payload = {}
 const history = []
 
-const spinner = '◐◓◑◒'.split('')
 let tick = 0;
-
 let lastReport = {};
+const spinner = '◐◓◑◒'.split('')
 
 await Promise.all(
   targets.map(async ({ url }) => {
@@ -109,7 +108,6 @@ await Promise.all(
             history.push(lastReport)
           }
 
-  
           bytes = 0;
           startedAt += 100;
         }
@@ -132,6 +130,7 @@ await Promise.all(
           time: (new Date()).toISOString(),
           timestamp: Math.round((new Date()).getTime()/1000),
         }
+        payload["raw"] = history
         const spin = () => chalk.green("✔");
         clear(true)
         console.log('')
@@ -146,7 +145,17 @@ await Promise.all(
         console.log('')
         console.log(chalk.green.bold(' Your internet speed is ' + Math.round(averageBits / 10000)/100 + " Mbps on " + (new Date()).toUTCString() + ' '));
         console.log('')
-        console.log([history.length, payload])
+
+        const postUpdate = await fetch('http://localhost:3000/api/create', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(payload)
+        })
+        const postUpdateJson = await postUpdate.json()
+
+        console.log(chalk.redBright(' Link: ') + 'https://speed.ethglobal.com/run/' + postUpdateJson.key);
+        console.log('')
+        // console.log([history.length, payload])
       })
     } catch(e) {
       if (!axios.isAxiosError(e)) {
